@@ -9,7 +9,6 @@ def main():
 	bits6 = [bits[i:i + n] for i in range(0, len(bits), n)]
 	while ((len_t + sharp) % 3 != 0):
 		sharp+=1
-	#bits6 = map(two_to_ten, bits6)
 	bits6 = [two_to_ten(elem) for elem in bits6]
 	print(base64enc(bits6) + "".join(['=' for e in range(sharp)]))
 
