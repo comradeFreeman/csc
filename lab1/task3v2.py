@@ -14,7 +14,7 @@ def main():
 	print("Частоты:\n")
 	for key, value in freq.items():
 		try:
-			print(f"{key}: %.10f" % value)
+			print(f"{chr(key)}: %.10f" % value)
 		except:
 			continue
 		#print("{0}: {1}".format(key, value))
@@ -28,11 +28,11 @@ def Entropy(freq: dict):
 	return entropy
 
 def countSymbols(file: str):
-	f = open(file, 'r', encoding='utf-8')
+	f = open(file, 'rb')
 	return sum([sum(1 for s in line) for line in f.readlines()])
 
 def SymbolsDict(file: str):
-	f = open(file, 'r', encoding='utf-8')
+	f = open(file, 'rb')
 	sd = {}
 	for line in f.readlines():
 		for sym in line:

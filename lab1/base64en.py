@@ -1,6 +1,7 @@
 
 def main():
-	bits = text_to_bits(input("file:\n"))
+	file = input("file:\n")
+	bits = text_to_bits(file)
 	len_t = int(len(bits) / 8)
 	while(len(bits) % 6 != 0):
 		bits += '0'
@@ -10,7 +11,10 @@ def main():
 	while ((len_t + sharp) % 3 != 0):
 		sharp+=1
 	bits6 = [two_to_ten(elem) for elem in bits6]
-	print(base64enc(bits6) + "".join(['=' for e in range(sharp)]))
+	name = f'base64_{"_".join(file.split("."))}.txt'
+	with open(name, 'w') as fin:
+		fin.write(base64enc(bits6) + "".join(['=' for e in range(sharp)]))
+	print(f"Saved as {name}")
 
 def text_to_bits(file, encoding='utf-8', errors='surrogatepass'):
 	f = open(file, 'r')
