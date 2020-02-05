@@ -4,6 +4,8 @@ import re
 def main():
 	a, sign_a, exp_a, m_a = convert_to_ieee754(float(input("Введите множимое:\n")))
 	b, sign_b, exp_b, m_b = convert_to_ieee754(float(input("Введите множитель:\n")))
+	exp_a += 127
+	exp_b += 127
 	print(f"Значение множимого в формате IEEE754:\n{' ' * 15}a = {a}")
 	print(f"Значение множителя в формате IEEE754:\n{' ' * 15}b = {b}")
 	x_new = multiply('1' + m_a, '1' + m_b)
@@ -13,14 +15,16 @@ def main():
 		x_new = x_new[1:]
 		exp_new = 1
 	x_new = x_new[:23]
+	exp_pr = ten_2_two(exp_a + exp_b, 8)
 	exp_new = ten_2_two(exp_a + exp_b - 127 + exp_new, 8)
 	print(f"Произведение мантисс (неурезанное):\n{(' ' * 36)}1(.){m_a}"
 		  f"\n{' ' * 34}*\n{' ' * 36}1(.){m_b}\n{' ' * 16 + '-' * len(x_new_unc)}\n"
 		  f"{' ' * 16 + ''.join(x_new_unc)}")
 	print(f"Произведение мантисс (урезанное до 23-х бит) + нормализация:\n{' ' * 40}{x_new}")
-	print(f"Сумма экспонент:\n{(' ' * 36)}{ten_2_two(exp_a, 8)}"
-		  f"\n{' ' * 34}+\n{' ' * 36}{ten_2_two(exp_b,8)}\n{' ' * 36 + '-' * len(exp_new)}\n"
-		  f"{' ' * 36 + ''.join(exp_new)}")
+	print(f"Сумма экспонент множимого и множителя:\n{(' ' * 36)}{ten_2_two(exp_a, 8)}"
+		  f"\n{' ' * 34}+\n{' ' * 36}{ten_2_two(exp_b,8)}\n{' ' * 35 + '-' * len(exp_pr)}\n"
+		  f"{' ' * 35 + ''.join(exp_pr)}")
+	print(f"Значение экспоненты после коррекции и нормализации мантиссы:\n{' ' * 36}{exp_new}")
 	print(f"Результат произведения в формате IEEE754:\n{' ' * 19}{sign_a ^ sign_b}{exp_new}{x_new}")
 
 def multiply(a: str, b: str):
