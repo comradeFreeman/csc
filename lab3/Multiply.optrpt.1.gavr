@@ -1,0 +1,22 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: matvec(int, int, double (*)[*], double *, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Multiply.c(37,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at Multiply.c(49,9)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at Multiply.c(49,9)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================

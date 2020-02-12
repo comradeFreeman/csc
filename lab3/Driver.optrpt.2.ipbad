@@ -1,0 +1,237 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 18.0.5.274 Build 20180823
+
+Compiler options: -std=c99 -qopt-report=4 -qopt-report-phase=vec -D NOALIAS -D ALIGNED -o MatVector
+
+Begin optimization report for: main()
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Driver.c(47,5) inlined into Driver.c(135,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Driver.c(48,9) inlined into Driver.c(135,5)
+      remark #15388: vectorization support: reference a[i][j] has aligned access   [ Driver.c(49,13) ]
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.030
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 113 
+      remark #15477: vector cost: 41.500 
+      remark #15478: estimated potential speedup: 2.670 
+      remark #15482: vectorized math library calls: 1 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at Driver.c(48,9) inlined into Driver.c(135,5)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at Driver.c(53,9) inlined into Driver.c(135,5)
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <a[i][101]>, stride is 102   [ Driver.c(55,17) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 4 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 1.310 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Driver.c(53,9) inlined into Driver.c(135,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at Driver.c(62,5) inlined into Driver.c(136,5)
+   remark #15388: vectorization support: reference x[i] has aligned access   [ Driver.c(136,22) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.025
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 112 
+   remark #15477: vector cost: 40.500 
+   remark #15478: estimated potential speedup: 2.710 
+   remark #15482: vectorized math library calls: 1 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Driver.c(62,5) inlined into Driver.c(136,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at Driver.c(74,5) inlined into Driver.c(159,5)
+   remark #15388: vectorization support: reference b[i] has aligned access   [ Driver.c(159,18) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 8
+   remark #15309: vectorization support: normalized vectorization overhead 0.475
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 6 
+   remark #15477: vector cost: 2.500 
+   remark #15478: estimated potential speedup: 2.090 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Driver.c(74,5) inlined into Driver.c(159,5)
+<Remainder loop for vectorization>
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at Driver.c(140,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+LOOP END
+===========================================================================
+
+Begin optimization report for: printsum(int, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Driver.c(74,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at Driver.c(74,5)
+   remark #15388: vectorization support: reference ans[i] has aligned access   [ Driver.c(74,33) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 1.450
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 6 
+   remark #15477: vector cost: 2.500 
+   remark #15478: estimated potential speedup: 2.260 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Driver.c(74,5)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: init_array(int, double, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Driver.c(62,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at Driver.c(62,5)
+   remark #15388: vectorization support: reference a[i] has aligned access   [ Driver.c(63,9) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.173
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 112 
+   remark #15477: vector cost: 40.500 
+   remark #15478: estimated potential speedup: 2.730 
+   remark #15482: vectorized math library calls: 1 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at Driver.c(62,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at Driver.c(65,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Driver.c(65,9)
+      remark #15389: vectorization support: reference a[i] has unaligned access   [ Driver.c(66,17) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 2
+      remark #15399: vectorization support: unroll factor set to 2
+      remark #15309: vectorization support: normalized vectorization overhead 0.300
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 4 
+      remark #15477: vector cost: 2.500 
+      remark #15478: estimated potential speedup: 1.450 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at Driver.c(65,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: init_matrix(int, int, double, double (*)[102])
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Driver.c(47,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Driver.c(48,9)
+      remark #15389: vectorization support: reference a[i][j] has unaligned access   [ Driver.c(49,13) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 2
+      remark #15309: vectorization support: normalized vectorization overhead 0.103
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 113 
+      remark #15477: vector cost: 43.500 
+      remark #15478: estimated potential speedup: 2.590 
+      remark #15482: vectorized math library calls: 1 
+      remark #15487: type converts: 1 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at Driver.c(48,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at Driver.c(53,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Driver.c(54,13)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at Driver.c(54,13)
+         remark #15389: vectorization support: reference a[i][j] has unaligned access   [ Driver.c(55,17) ]
+         remark #15381: vectorization support: unaligned access used inside loop body
+         remark #15305: vectorization support: vector length 2
+         remark #15399: vectorization support: unroll factor set to 2
+         remark #15309: vectorization support: normalized vectorization overhead 0.300
+         remark #15300: LOOP WAS VECTORIZED
+         remark #15451: unmasked unaligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 4 
+         remark #15477: vector cost: 2.500 
+         remark #15478: estimated potential speedup: 1.450 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at Driver.c(54,13)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================

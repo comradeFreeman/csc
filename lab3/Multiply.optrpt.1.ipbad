@@ -1,0 +1,45 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 18.0.5.274 Build 20180823
+
+Compiler options: -std=c99 -qopt-report=4 -qopt-report-phase=vec -D NOALIAS -o MatVector
+
+Begin optimization report for: matvec(int, int, double (*)[*], double *__restrict__, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at Multiply.c(37,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at Multiply.c(49,9)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at Multiply.c(49,9)
+      remark #15388: vectorization support: reference a[i][j] has aligned access   [ Multiply.c(50,21) ]
+      remark #15388: vectorization support: reference x[j] has aligned access   [ Multiply.c(50,31) ]
+      remark #15305: vectorization support: vector length 2
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.031
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 2 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 10 
+      remark #15477: vector cost: 4.000 
+      remark #15478: estimated potential speedup: 2.380 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at Multiply.c(49,9)
+   <Alternate Alignment Vectorized Loop>
+   LOOP END
+
+   LOOP BEGIN at Multiply.c(49,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================
