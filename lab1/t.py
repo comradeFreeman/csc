@@ -1,10 +1,8 @@
 res = {}
-a = input('chislo?\n')
-while (a != '#'):
-	try:
-		res[a] = (str(bin(int(a)))[-10:-7])
-		a = input('chislo?\n')
-	except: continue
-for key, value in res.items():
-	if value == '100':
+# (str(bin(int(a)))[-10:-7])
+with open('codes.txt', 'r') as f:
+	for line in f.readlines():
+		res[line] = str(bin(int(line)))[-3:]
+for key, val in res.items():
+	if val == '000' or val == '001' or val == '101':
 		print(key)
